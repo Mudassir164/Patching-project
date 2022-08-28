@@ -23,3 +23,18 @@
 .div-height{
     height:90vh;
 }
+
+#animate-1{
+    animation: myAnim 4s ease 2s infinite normal forwards;
+    @keyframes myAnim {
+        0% {
+            opacity: 0;
+            transform: translateX(-250px);
+        }
+    
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}

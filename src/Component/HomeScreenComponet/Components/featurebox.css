@@ -1,7 +1,23 @@
-/* #feature-text{
+.feature-text{
     font-size: 15px;
     color: black;
-} */
+    
+    transform: scale(1);
+  transition: all 0.1s ease-in-out 0.2s;
+}
+#feature-box:hover .icon{
+    color: blue;
+    
+
+}
+#feature-box:hover .feature-text{
+    transform: scale(1.09);
+    
+
+}
+.icon{
+    color: orange;
+}
 /* .feature-box:hover .feature-text{
 
 

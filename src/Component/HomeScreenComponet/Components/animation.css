@@ -1,0 +1,44 @@
+.animation-1{
+    animation: myAnim-1 5s ease 10s infinite normal forwards;
+   
+}
+.animation-2{
+    animation: myAnim-2 5s ease 10s infinite normal forwards;
+}
+.animation-3{
+    animation: myAnim-3 5s ease 15s infinite normal forwards;
+}
+
+@keyframes myAnim-1 {
+    0% {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes myAnim-2 {
+    0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes myAnim-3 {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

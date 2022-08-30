@@ -67,7 +67,7 @@ const FeatureBoxDetail = [
 
 const AllFeatures = () => {
   return (
-    <div className="w-[100%] flex flex-row flex-wrap justify-between border-red-500">
+    <div className="w-[100%] flex flex-row flex-wrap justify-between items-center border-red-500">
       {FeatureBoxDetail.map((value, index) => (
         <FeatureBox icon={value.icon} title={value.title} detail={value.detail} />
       ))}

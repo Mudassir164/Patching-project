@@ -2,8 +2,12 @@ import React from "react";
 
 export const Input = (props) => {
   return (
-    <div className=" md:w-[48%] w-[100%]  mt-7 mr-2 rounded">
-      <p className="text-right text-red-700 mr-2">{props.error}</p>
+    <div className=" md:w-[48%]  w-[100%]  mt-3 rounded ">
+      <div className="w-[100%] h-8">
+        <p className="text-right text-red-700 mr-2 md:text-xs lg:text-base">
+          {props.error}
+        </p>
+      </div>
       <input
         {...props}
         className="w-[100%] p-2 bg-[#e8eeef] rounded-md focus:outline-none focus:bg-slate-300"

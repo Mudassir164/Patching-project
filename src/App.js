@@ -9,6 +9,7 @@ import EmboridreedPatches from "./Screens/MainScreen/EmboridreedPatches";
 import LeatherPatches from "./Screens/MainScreen/LeatherPatches";
 import PVCpatch from "./Screens/MainScreen/PVCpatch";
 import SublimationPatch from "./Screens/MainScreen/SublimationPatch";
+import Navbar from "./Component/Navbar";
 function App() {
   // HEAD
   console.log("checking request");
@@ -17,6 +18,7 @@ function App() {
     <Router>
       <div className="App border-red-500 border-1  w-[100%] flex flex-col">
         <TopNavbar />
+        {/* <Navbar /> */}
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
           <Route exact path="/digitizing-patch" element={<Digitizing />} />

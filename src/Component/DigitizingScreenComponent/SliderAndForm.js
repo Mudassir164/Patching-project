@@ -19,7 +19,7 @@ const SliderAndForm = () => {
     </p>
   );
   return (
-    <section className="flex md:flex-row flex-col w-[100%] px-3 py-5 bg-gray-50">
+    <section className="flex md:flex-row flex-col w-[100%] px-3 py-5 bg-gray-50 max-w-[85rem] my-0 mx-auto">
       <div className="w-[100%] md:w-[50%] lg:w-[60%] justify-center items-center flex ">
         <SliderContainer
           imgSrc={img1}

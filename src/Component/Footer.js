@@ -62,7 +62,7 @@ const Company = [
 ];
 const Footer = () => {
   return (
-    <section className="flex w-[100%] flex-row justify-between shrink-0 flex-wrap p-5 md:p-14 ">
+    <section className="flex w-[100%] flex-row justify-between shrink-0 max-w-[85rem] my-0 mx-auto flex-wrap p-5 md:p-14 ">
       <FooterContent title="Company" ContentList={Company} />
       <FooterContent title="Services" ContentList={Services} />
       <FooterContent title="Policy and Tip" ContentList={PrivacyPolicy} />

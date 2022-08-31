@@ -4,14 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Input, SelectFile, SelectInput, TextArea } from "./InputComponents";
 
-const Form = () => {
-  const selectOptions = [
-    "Embroidered Digitizing",
-    "Embroidered Patch",
-    "Leather Patch",
-    "Sublimation Patch",
-    "Vector Ilustration",
-  ];
+const Form = ({ HW, SI, selectOptions }) => {
   const userQuote = {
     fullname: "",
     email: "",
@@ -41,9 +34,11 @@ const Form = () => {
       .trim()
       .min(3, "Invalid Country Name")
       .required("Country  is required"),
-    Service: Yup.string()
-      .required("Please select a Service")
-      .oneOf(selectOptions, "Please Select a Service"),
+    Service:
+      selectOptions &&
+      Yup.string()
+        .required("Please select a Service")
+        .oneOf(selectOptions, "Please Select a Service"),
     phone: Yup.number().required("Phone Number is required"),
     discription: Yup.string(),
 
@@ -132,6 +127,26 @@ const Form = () => {
                 error={touched.country && errors.country}
                 onBlur={handleBlur("country")}
               />
+              {HW && (
+                <>
+                  <Input
+                    type="text"
+                    placeholder="Width *"
+                    onChange={handleChange("country")}
+                    value={country}
+                    error={touched.country && errors.country}
+                    onBlur={handleBlur("country")}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Height *"
+                    onChange={handleChange("country")}
+                    value={country}
+                    error={touched.country && errors.country}
+                    onBlur={handleBlur("country")}
+                  />
+                </>
+              )}
               <SelectFile
                 multiple={false}
                 type="file"
@@ -140,13 +155,17 @@ const Form = () => {
                 error={touched.choseFile && errors.choseFile}
                 onBlur={handleBlur("choseFile")}
               />
-              <SelectInput
-                options={selectOptions}
-                onChange={handleChange("Service")}
-                value={Service}
-                error={touched.Service && errors.Service}
-                onBlur={handleBlur("Service")}
-              />
+              {SI && (
+                <>
+                  <SelectInput
+                    options={selectOptions}
+                    onChange={handleChange("Service")}
+                    value={Service}
+                    error={touched.Service && errors.Service}
+                    onBlur={handleBlur("Service")}
+                  />
+                </>
+              )}
               <TextArea
                 onChange={handleChange("discription")}
                 value={discription}

@@ -1,0 +1,8 @@
+.section-break::after{
+    content: '';
+    display: block;
+    border: 1px solid gray;
+    width: 90%;
+    position: absolute;
+    top:0
+}

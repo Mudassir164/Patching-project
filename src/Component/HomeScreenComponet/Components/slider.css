@@ -21,6 +21,10 @@
 }
 
 .div-height{
-    height:90vh;
+    /* border:1px solid red; */
+    min-height: 500px;
+    width: 100%;
 }
+
+
 

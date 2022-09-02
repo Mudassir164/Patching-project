@@ -32,7 +32,7 @@ const EmbroideryCoveragePricing = () => {
         <PricingTable list={PricingList} heading="50% Coverage" />
         <PricingTable list={PricingList} heading="50% Coverage" />
       </div>
-      <div>
+      <div className="w-[100%] max-w-[85rem] my-0 mx-auto">
         <h6 className="text-xl font-bold">
           Price includes up to eight standard embroidery colors.
         </h6>

@@ -1,26 +1,28 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "../Style.css";
 import { FiPlus } from "react-icons/fi";
 
-const FAQsBox = ({ title, questions }) => {
-  const [active, setActive] = useState(false);
-
+const FAQsBox = ({ title, questions, active, setActive, ukey, h, seth }) => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    contentRef.current.style.maxHeight = active
-      ? `${contentRef.current.scrollHeight}px`
-      : "0px";
+    contentRef.current.style.maxHeight =
+      active === ukey ? `${contentRef.current.scrollHeight}px` : "0px";
   }, [contentRef, active]);
 
-  const toggleAccordion = () => {
-    setActive(!active);
+  const toggleAccordion = (index) => {
+    if (active === index) {
+      return setActive(null);
+    }
+    setActive(index);
   };
   return (
     <div className="mb-5">
       <button
         className={`question-section ${active}`}
-        onClick={toggleAccordion}
+        onClick={() => {
+          toggleAccordion(ukey);
+        }}
       >
         <div>
           <div className="flex items-center px-5 py-5">
@@ -31,7 +33,7 @@ const FAQsBox = ({ title, questions }) => {
           </div>
           <div
             ref={contentRef}
-            className={active ? `answer answer-divider` : `answer`}
+            className={active === ukey ? `answer answer-divider` : `answer`}
           >
             {questions.map((value, index) => (
               <div key={`question and answer ${index}`} className="w-full p-3">

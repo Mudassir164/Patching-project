@@ -1,4 +1,5 @@
 import React from "react";
+import EmbroideryCoveragePricing from "../../Component/EmbroidryScreen/EmbroideryCoveragePricing";
 import FAQs from "../../Component/EmbroidryScreen/FAQs";
 import HowToPlaceOrderSection from "../../Component/EmbroidryScreen/HowToPlaceOrderSection";
 import OurPatchGallery from "../../Component/EmbroidryScreen/OurPatchGallery";
@@ -10,6 +11,7 @@ const EmboridreedPatches = () => {
       <SliderAndForm />
       <HowToPlaceOrderSection />
       <OurPatchGallery />
+      <EmbroideryCoveragePricing />
       <FAQs />
     </>
   );

@@ -6,7 +6,7 @@ const PricingSection = () => {
     <section className="w-[100%] p-3 md:p-14 flex flex-col  bg-[#2196f3]">
       <div className="w-[100%] flex flex-col justify-center items-center ">
         <h1 className="text-2xl text-white font-bold">Pricing</h1>
-        <p className="text-lg text-white ">
+        <p className="text-lg text-white text-center ">
           Challanging the market price, order today!
         </p>
       </div>

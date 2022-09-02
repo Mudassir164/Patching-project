@@ -78,10 +78,10 @@ const Footer = () => {
 const FooterContent = ({ title, ContentList }) => {
   return (
     <div className="w-[48%] sm:w-[30%] lg:w-[18%]  flex flex-col p-3 ">
-      <h4 className="text-[#798093] text-lg font-bold mb-1">{title}</h4>
+      <h4 className="text-[#798093] text-lg font-bold mb-1 ">{title}</h4>
       <ul>
         {ContentList.map((value, index) => (
-          <li className="text-[#212121] mb-1 hover:text-[blue]">
+          <li className="text-[#212121] mb-1 hover:text-[blue] ">
             <Link to={value.link}>{value.title}</Link>
           </li>
         ))}

@@ -1,7 +1,18 @@
 import React from "react";
+import FAQs from "../../Component/EmbroidryScreen/FAQs";
+import HowToPlaceOrderSection from "../../Component/EmbroidryScreen/HowToPlaceOrderSection";
+import OurPatchGallery from "../../Component/EmbroidryScreen/OurPatchGallery";
+import SliderAndForm from "../../Component/EmbroidryScreen/SliderAndForm";
 
 const EmboridreedPatches = () => {
-  return <div>EmboridreedPatches</div>;
+  return (
+    <>
+      <SliderAndForm />
+      <HowToPlaceOrderSection />
+      <OurPatchGallery />
+      <FAQs />
+    </>
+  );
 };
 
 export default EmboridreedPatches;

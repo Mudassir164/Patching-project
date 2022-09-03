@@ -20,7 +20,10 @@ const DigitizingGallery = () => {
       <div className="w-[100%]  items-center justify-center flex flex-row flex-wrap mt-10 max-w-[85rem] my-0 mx-auto">
         {[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16].map((value, index) => {
           return (
-            <div className=" w-[100%] sm:w-[45%] lg:w-[30%] shadow-lg mx-3 my-5 rounded-md overflow-hidden cursor-pointer ">
+            <div
+              key={`digitizing gallery ${index}`}
+              className=" w-[100%] sm:w-[45%] lg:w-[30%] shadow-lg mx-3 my-5 rounded-md overflow-hidden cursor-pointer "
+            >
               <img
                 src={require(`../../Assets/${value}t.jpg`)}
                 alt={`pic ${value}`}

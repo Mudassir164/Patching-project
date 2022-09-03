@@ -66,7 +66,7 @@ const FAQsList = [
 
 const FAQs = () => {
   const [active, setActive] = useState(false);
-  const [h, seth] = useState("");
+
   return (
     <section className="w-[100%] p-3 md:p-14 flex flex-col relative  bg-gray-50  ">
       <h1 className="text-6xl font-bold text-center p-3">FAQ</h1>
@@ -80,8 +80,6 @@ const FAQs = () => {
               ukey={`faqs${index}`}
               active={active}
               setActive={setActive}
-              h={h}
-              seth={seth}
             />
           ))}
         </div>

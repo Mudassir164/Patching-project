@@ -16,9 +16,9 @@ function App() {
 
   return (
     <Router>
-      <div className="App border-red-500 border-1  w-[100%] flex flex-col">
+      <div className="App relative  w-[100%] flex flex-col">
         <TopNavbar />
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
           <Route exact path="/digitizing-patch" element={<Digitizing />} />

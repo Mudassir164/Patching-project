@@ -80,6 +80,7 @@ const AllFeatures = () => {
           icon={value.icon}
           title={value.title}
           detail={value.detail}
+          key={`all features ${index}`}
         />
       ))}
     </div>

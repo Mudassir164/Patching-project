@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../Style.css";
 import { FiPlus } from "react-icons/fi";
 
-const FAQsBox = ({ title, questions, active, setActive, ukey, h, seth }) => {
+const FAQsBox = ({ title, questions, active, setActive, ukey }) => {
   const contentRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +28,9 @@ const FAQsBox = ({ title, questions, active, setActive, ukey, h, seth }) => {
           <div className="flex items-center px-5 py-5">
             <h1 className="text-3xl font-bold">{title}</h1>
             <FiPlus
-              className={active ? `question-icon rotate` : `question-icon`}
+              className={
+                active === ukey ? `question-icon rotate` : `question-icon`
+              }
             />
           </div>
           <div

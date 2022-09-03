@@ -59,6 +59,7 @@ const AllOrderSteps = () => {
           icon={value.icon}
           title={value.title}
           detail={value.detail}
+          key={`All order steps ${index}`}
         />
       ))}
     </div>

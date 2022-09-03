@@ -10,7 +10,10 @@ const PatchGallery = () => {
       <div className="w-[100%]  items-center justify-center flex flex-row flex-wrap mt-10 max-w-[85rem] my-0 mx-auto">
         {[2, 3, 4, 7, 8, 11, 12, 13, 14, 15, 16].map((value, index) => {
           return (
-            <div className=" w-[45%] md:w-[22%] border-2 border-black-400 mx-3 my-5 rounded-md overflow-hidden cursor-pointer ">
+            <div
+              key={`PatchGallery${index}`}
+              className=" w-[45%] md:w-[22%] border-2 border-black-400 mx-3 my-5 rounded-md overflow-hidden cursor-pointer "
+            >
               <img
                 src={require(`../../../Assets/patch/${value}t.jpg`)}
                 alt={`pic ${value}`}

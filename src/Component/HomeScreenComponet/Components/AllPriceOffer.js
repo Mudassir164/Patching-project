@@ -42,6 +42,7 @@ const AllPriceOffer = () => {
           complexity={value.complexity}
           turnarround={value.turnarround}
           rush={value.rush}
+          key={`all price ${index}`}
         />
       ))}
     </div>

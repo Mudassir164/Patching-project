@@ -14,7 +14,7 @@ const TopNavbar = () => {
           >
             <BsFillTelephoneFill className="ml-5 " size={12} />
             <p className="   underline text-base ml-2 font-bold">
-              +92312-3456789
+              +44 7455 326831
             </p>
           </a>
         </div>

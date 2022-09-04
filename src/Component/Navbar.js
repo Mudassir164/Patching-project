@@ -13,68 +13,70 @@ const Navbar = () => {
   return (
     <nav
       className={`navbar-container ease-in py-3  sticky top-0 z-10
+      
       ${showMore ? ` overlay ` : `over `}
         w-full flex flex-col lg:flex-row lg:justify-between lg:items-center`}
     >
-      <div className="nav-logo w-full justify-between px-5 flex items-center flex-row lg:w-[30%] ">
-        <Link to="/">
-          <img className="h-10 " src={url} alt="" />
-        </Link>
-        <FaBars
-          size={20}
-          color="white"
-          className="lg:hidden"
-          onClick={() => {
-            setbarButton(!barButton);
-            console.log("button");
-          }}
-        />
-      </div>
-      <div
-        className={`nav-options text-white w-full justify-center   lg:w-[70%]  ${
-          barButton ? "flex" : "hidden"
-        } lg:flex`}
-      >
-        {/* {showMore ? ( */}
-        <ul className="flex flex-col lg:flex-row lg:justify-end    lg:gap-5 lg:items-center p-3 lg:mr-5   w-[50%] sm:w-[40] md:w-[30%] lg:w-[100%]">
-          {showMore ? (
-            <>
-              <Less
-                onClick={() => {
-                  setShowMore(!showMore);
-                }}
-              />
-              <NavLink title="Account" link="/" />
-              <NavLink title="Contact" link="/" />
-            </>
-          ) : (
-            <>
-              <NavLink title="Digitizing" link="/digitizing-patch" />
-              <NavLink title="Emboidered Patch" link="/emboridreed-patch" />
-              <NavLink title="Leather Patch" link="/" />
-              <NavLink title="Sublimation Patch" link="/" />
-              <NavLink title=" PVC Patch" link="/" />
-              <More
-                onClick={() => {
-                  setShowMore(!showMore);
-                }}
-              />
-            </>
-          )}
-
-          <li
-            className="border-[1px] cursor-pointer  rounded-full px-5 py-2 hidden lg:flex items-center"
+      <div className="w-[100%] flex flex-col lg:flex-row lg:justify-between lg:items-center max-w-[85rem] my-0 mx-auto  ">
+        <div className="nav-logo w-full justify-between px-5 flex items-center flex-row lg:w-[30%] ">
+          <Link to="/">
+            <img className="h-10 " src={url} alt="" />
+          </Link>
+          <FaBars
+            size={20}
+            color="white"
+            className="lg:hidden"
             onClick={() => {
-              setShowMore(!showMore);
+              setbarButton(!barButton);
+              console.log("button");
             }}
-          >
-            More
-            <i className="ml-3 text-md">
-              {showMore ? <MdClose /> : <IoIosArrowDown />}
-            </i>
-          </li>
-        </ul>
-        {/* ) : (
+          />
+        </div>
+        <div
+          className={`nav-options text-white w-full justify-center   lg:w-[70%]  ${
+            barButton ? "flex" : "hidden"
+          } lg:flex`}
+        >
+          {/* {showMore ? ( */}
+          <ul className="flex flex-col lg:flex-row lg:justify-end    lg:gap-5 lg:items-center p-3 lg:mr-5   w-[50%] sm:w-[40] md:w-[30%] lg:w-[100%]">
+            {showMore ? (
+              <>
+                <Less
+                  onClick={() => {
+                    setShowMore(!showMore);
+                  }}
+                />
+                <NavLink title="Account" link="/" />
+                <NavLink title="Contact" link="/" />
+              </>
+            ) : (
+              <>
+                <NavLink title="Digitizing" link="/digitizing-patch" />
+                <NavLink title="Emboidered Patch" link="/emboridreed-patch" />
+                <NavLink title="Leather Patch" link="/leather-patch" />
+                <NavLink title="Sublimation Patch" link="/sublimation-patch" />
+                <NavLink title=" PVC Patch" link="/pvc-patch" />
+                <More
+                  onClick={() => {
+                    setShowMore(!showMore);
+                  }}
+                />
+              </>
+            )}
+
+            <li
+              className="border-[1px] cursor-pointer  rounded-full px-5 py-2 hidden lg:flex items-center"
+              onClick={() => {
+                setShowMore(!showMore);
+              }}
+            >
+              More
+              <i className="ml-3 text-md">
+                {showMore ? <MdClose /> : <IoIosArrowDown />}
+              </i>
+            </li>
+          </ul>
+          {/* ) : (
           <ul className="flex flex-col lg:flex-row lg:justify-end  lg:gap-5 lg:items-center p-3 bg-red-600  lg:mr-5  w-[50%] sm:w-[40] md:w-[30%] lg:w-[100%]">
             <NavLink title="Digitizing" link="/" />
             <NavLink title="Emboidered Patch" link="/" />
@@ -95,6 +97,7 @@ const Navbar = () => {
             </li>
           </ul>
         )} */}
+        </div>
       </div>
     </nav>
   );

@@ -34,7 +34,7 @@ const OrderBoxContent = [
 
 const AllPriceOffer = () => {
   return (
-    <div className="w-[100%] flex flex-row flex-wrap  max-w-[85rem] my-0 mx-auto justify-between items-center py-10">
+    <div className="w-[100%] flex flex-row flex-wrap  max-w-[85rem] my-0 mx-auto justify-between  py-10">
       {OrderBoxContent.map((value, index) => (
         <OfferBox
           title={value.title}

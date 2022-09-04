@@ -105,11 +105,14 @@ const Address = ({ title, ContentList }) => {
           >
             <BsFillTelephoneFill className="text-gray-600 " size={20} />
             <p className=" text-base ml-2 font-bold text-blue-500">
-              +92312-3456789
+              +44 7455 326831
             </p>
           </a>
         </li>
-        <li className="text-[#212121] mb-1">Karachi, Pakistan. (75800)</li>
+        <li className="text-[#212121] mb-1">
+          Unit 107548 13 Freeland Park, Wareham Road, Poole, Dorset, United
+          Kingdom, BH16 6FH
+        </li>
       </ul>
     </div>
   );

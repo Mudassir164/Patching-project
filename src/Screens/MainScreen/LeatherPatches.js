@@ -14,6 +14,7 @@ const LeatherPatches = () => {
       <ProductDiscription />
       <WelcomeSection />
       <CustomizeYourPage />
+
       <WhyChoseUS />
       <GallerySection />
     </>

@@ -4,7 +4,7 @@ const ProductDiscription1 = () => {
   return (
     <section className="w-[100%] p-3 md:p-14 flex flex-col relative  bg-gray-50 ">
       <div className="w-[100%] flex flex-col justify-center text-center mb-3 items-center section-break"></div>
-      <div className="w-[100%] flex flex-row justify-center gap-10  max-w-[85rem] my-0 mx-auto">
+      <div className="w-[100%] flex flex-col md:flex-row-reverse justify-center gap-10  max-w-[85rem] my-0 mx-auto">
         <div className="md:w-[40%] ">
           <img
             src={require("../../Assets/PVC Patch/pvc–rubber–silicone-labels.jpg")}
@@ -12,7 +12,7 @@ const ProductDiscription1 = () => {
           />
         </div>
         <div className=" w-[100%] md:w-[50%]">
-          <h2 className="text-4xl font-serif font-bold mb-3">
+          <h2 className="text-4xl font-serif font-bold mb-3 text-center">
             PVC – Rubber – Silicone Labels
           </h2>
           <Paragraph>

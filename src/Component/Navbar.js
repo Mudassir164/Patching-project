@@ -22,15 +22,27 @@ const Navbar = () => {
           <Link to="/">
             <img className="h-10 " src={url} alt="" />
           </Link>
-          <FaBars
-            size={20}
-            color="white"
-            className="lg:hidden"
-            onClick={() => {
-              setbarButton(!barButton);
-              console.log("button");
-            }}
-          />
+
+          {!barButton ? (
+            <FaBars
+              size={20}
+              color="white"
+              className="lg:hidden cursor-pointer"
+              onClick={() => {
+                setbarButton(!barButton);
+              }}
+            />
+          ) : (
+            <MdClose
+              size={20}
+              color="white"
+              className="lg:hidden cursor-pointer"
+              onClick={() => {
+                setbarButton(!barButton);
+                setShowMore(false);
+              }}
+            />
+          )}
         </div>
         <div
           className={`nav-options text-white w-full justify-center   lg:w-[70%]  ${
@@ -38,7 +50,11 @@ const Navbar = () => {
           } lg:flex`}
         >
           {/* {showMore ? ( */}
-          <ul className="flex flex-col lg:flex-row lg:justify-end    lg:gap-5 lg:items-center p-3 lg:mr-5   w-[50%] sm:w-[40] md:w-[30%] lg:w-[100%]">
+          <ul
+            className={`w-[100%] p-3 flex flex-col  ${
+              showMore ? "items-end" : ""
+            } lg:flex-row lg:justify-end lg:gap-5 lg:items-center  lg:mr-5 lg:w-[100%]`}
+          >
             {showMore ? (
               <>
                 <Less
@@ -46,16 +62,65 @@ const Navbar = () => {
                     setShowMore(!showMore);
                   }}
                 />
-                <NavLink title="Account" link="/" />
-                <NavLink title="Contact" link="/" />
+                <NavLink
+                  title="Account"
+                  link="/"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
+                <NavLink
+                  title="Contact"
+                  link="/contact-us"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
               </>
             ) : (
               <>
-                <NavLink title="Digitizing" link="/digitizing-patch" />
-                <NavLink title="Emboidered Patch" link="/emboridreed-patch" />
-                <NavLink title="Leather Patch" link="/leather-patch" />
-                <NavLink title="Sublimation Patch" link="/sublimation-patch" />
-                <NavLink title=" PVC Patch" link="/pvc-patch" />
+                <NavLink
+                  title="Digitizing"
+                  link="/digitizing-patch"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
+                <NavLink
+                  title="Emboidered Patch"
+                  link="/emboridreed-patch"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
+                <NavLink
+                  title="Leather Patch"
+                  link="/leather-patch"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
+                <NavLink
+                  title="Sublimation Patch"
+                  link="/sublimation-patch"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
+                <NavLink
+                  title=" PVC Patch"
+                  link="/pvc-patch"
+                  onClick={() => {
+                    setbarButton(!barButton);
+                    setShowMore(false);
+                  }}
+                />
                 <More
                   onClick={() => {
                     setShowMore(!showMore);
@@ -76,36 +141,18 @@ const Navbar = () => {
               </i>
             </li>
           </ul>
-          {/* ) : (
-          <ul className="flex flex-col lg:flex-row lg:justify-end  lg:gap-5 lg:items-center p-3 bg-red-600  lg:mr-5  w-[50%] sm:w-[40] md:w-[30%] lg:w-[100%]">
-            <NavLink title="Digitizing" link="/" />
-            <NavLink title="Emboidered Patch" link="/" />
-            <NavLink title="Leather Patch" link="/" />
-            <NavLink title="Sublimation Patch" link="/" />
-            <NavLink title=" PVC Patch" link="/" />
-
-            <li
-              className="border-[1px] hidden  cursor-pointer rounded-full px-5 py-2 lg:flex items-center"
-              onClick={() => {
-                setShowMore(!showMore);
-              }}
-            >
-              More
-              <i className="ml-3 text-md">
-                {showMore ? <MdClose /> : <IoIosArrowDown />}
-              </i>
-            </li>
-          </ul>
-        )} */}
         </div>
       </div>
     </nav>
   );
 };
 
-const NavLink = ({ title, link }) => {
+const NavLink = ({ title, link, onClick }) => {
   return (
-    <li className="hover:text-gray-400 cursor-pointer font-bold te lg:font-normal py-2">
+    <li
+      className="hover:text-gray-400 cursor-pointer font-bold te lg:font-normal py-2"
+      onClick={onClick}
+    >
       <Link to={link}>{title}</Link>
     </li>
   );
@@ -114,7 +161,7 @@ const NavLink = ({ title, link }) => {
 const More = ({ onClick }) => {
   return (
     <li
-      className="hover:text-gray-400 flex lg:hidden font-bold te lg:font-normal justify-between items-center cursor-pointer py-2"
+      className="hover:text-gray-400 flex lg:hidden font-bold  lg:font-normal justify-between items-center cursor-pointer py-2"
       onClick={onClick}
     >
       {/* <Link to={link}>{title}</Link> */}
@@ -127,13 +174,13 @@ const More = ({ onClick }) => {
 const Less = ({ onClick }) => {
   return (
     <li
-      className="hover:text-gray-400 flex lg:hidden font-bold te lg:font-normal cursor-pointer items-center py-2"
+      className="hover:text-gray-400 w-[100%] justify-between flex flex-row lg:hidden font-bold te lg:font-normal cursor-pointer items-center py-2"
       onClick={onClick}
     >
       {/* <Link to={link}>{title}</Link> */}
 
       <FaLessThan color="" />
-      <p className="ml-3">More</p>
+      <p className="ml-3">Less</p>
     </li>
   );
 };

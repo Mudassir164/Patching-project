@@ -17,6 +17,7 @@ const PVCpatch = () => {
       <WelcomeSection />
       <CustomizeYourPage />
       <WhyChoseUS />
+      {/* <WhyChooseUs /> */}
       <GallerySection />
     </>
   );

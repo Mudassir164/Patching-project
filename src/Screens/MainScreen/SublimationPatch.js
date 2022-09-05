@@ -3,6 +3,7 @@ import CustomizeYourPage from "../../Component/SublimationPatch/CustomizeYourPag
 import GallerySection from "../../Component/SublimationPatch/GallerySection";
 import SliderAndForm from "../../Component/SublimationPatch/SliderAndForm";
 import WelcomeSection from "../../Component/WelcomeSection";
+
 import WhyChoseUS from "../../Component/WhyChoseUS";
 
 const SublimationPatch = () => {
@@ -11,6 +12,7 @@ const SublimationPatch = () => {
       <SliderAndForm />
       <WelcomeSection />
       <CustomizeYourPage />
+
       <WhyChoseUS />
       <GallerySection />
     </>

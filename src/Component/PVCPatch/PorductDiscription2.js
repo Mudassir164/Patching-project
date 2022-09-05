@@ -4,15 +4,15 @@ const ProductDiscription2 = () => {
   return (
     <section className="w-[100%] p-3 md:p-14 flex flex-col relative  bg-gray-50 ">
       <div className="w-[100%] flex flex-col justify-center text-center mb-3   items-center section-break"></div>
-      <div className="w-[100%] flex flex-row-reverse  justify-center max-w-[85rem] my-0 mx-auto gap-10">
-        <div className="md:w-[40%] ">
+      <div className="w-[100%] flex flex-col md:flex-row-reverse  justify-center max-w-[85rem] my-0 mx-auto gap-10">
+        <div className="w-full md:w-[40%] ">
           <img
             src={require("../../Assets/PVC Patch/PVC-Keychain.jpg")}
             className="w-[100%]"
           />
         </div>
-        <div className=" w-[100%] md:w-[50%]">
-          <h2 className="text-4xl font-serif font-bold mb-3">
+        <div className="w-full md:w-[50%]">
+          <h2 className="text-4xl font-serif font-bold mb-3 text-center">
             Custom Rubber PVC Keychains
           </h2>
           <Paragraph>

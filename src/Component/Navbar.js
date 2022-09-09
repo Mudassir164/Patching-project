@@ -64,7 +64,7 @@ const Navbar = () => {
                 />
                 <NavLink
                   title="Account"
-                  link="/"
+                  link="/log-in"
                   onClick={() => {
                     setbarButton(!barButton);
                     setShowMore(false);

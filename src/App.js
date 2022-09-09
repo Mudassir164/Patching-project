@@ -11,6 +11,8 @@ import PVCpatch from "./Screens/MainScreen/PVCpatch";
 import SublimationPatch from "./Screens/MainScreen/SublimationPatch";
 import Navbar from "./Component/Navbar";
 import ContactUsScreen from "./Screens/MainScreen/ContactUsScreen";
+import LoginScreen from "./Screens/AuthenticationScreen/LoginScreen";
+import RegistrationScreen from "./Screens/AuthenticationScreen/RegistrationScreen";
 function App() {
   // HEAD
   console.log("checking request");
@@ -31,6 +33,8 @@ function App() {
           <Route exact path="/leather-patch" element={<LeatherPatches />} />
           <Route exact path="/pvc-patch" element={<PVCpatch />} />
           <Route exact path="/contact-us" element={<ContactUsScreen />} />
+          <Route exact path="/log-in" element={<LoginScreen />} />
+          <Route exact path="/sign-up" element={<RegistrationScreen />} />
 
           <Route
             exact

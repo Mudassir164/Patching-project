@@ -181,7 +181,7 @@ const Form = () => {
                 onClick={handleSubmit}
                 type="submit"
               >
-                Login
+                Register
               </button>
             </>
           );

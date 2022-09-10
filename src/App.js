@@ -13,6 +13,7 @@ import Navbar from "./Component/Navbar";
 import ContactUsScreen from "./Screens/MainScreen/ContactUsScreen";
 import LoginScreen from "./Screens/AuthenticationScreen/LoginScreen";
 import RegistrationScreen from "./Screens/AuthenticationScreen/RegistrationScreen";
+import ScrollToTop from "./Component/ScrollToTop";
 function App() {
   // HEAD
   console.log("checking request");
@@ -20,6 +21,7 @@ function App() {
   return (
     <Router>
       <div className="App relative  w-[100%] flex flex-col">
+        <ScrollToTop />
         <TopNavbar />
         <Navbar />
         <Routes>

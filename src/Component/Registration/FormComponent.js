@@ -49,6 +49,7 @@ export const validationSchema = Yup.object({
       .oneOf(countries, "Please Select a Service"),
 
   password: Yup.string()
+    .trim()
     .required("Please Enter your password")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
@@ -60,7 +61,7 @@ export const validationSchema = Yup.object({
     .required("Confirm Password is required")
     .oneOf([Yup.ref("password"), null], "Passwords must be match"),
 
-  phone: Yup.string().matches(phoneRegExp, "Phone number is not valid"),
+  phone: Yup.string().trim().matches(phoneRegExp, "Phone number is not valid"),
 
   streetAddress: Yup.string().trim().required("Address is Required"),
 
@@ -106,7 +107,11 @@ export const PasswordInput = (props) => {
       <div className="w-[100%] flex flex-row relative">
         <input
           {...props}
-          className="w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none focus:border-blue-500 hover:border-blue-500"
+          className={`w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none ${
+            props.error
+              ? "border-red-500"
+              : "focus:border-blue-500 hover:border-blue-500"
+          }`}
         />
         {props.shown ? (
           <BiHide
@@ -141,7 +146,11 @@ export const SelectInput = (props) => {
       <select
         name="cars"
         id="cars"
-        className="w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none focus:border-blue-500 hover:border-blue-500"
+        className={`w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none ${
+          props.error
+            ? "border-red-500"
+            : "focus:border-blue-500 hover:border-blue-500"
+        }`}
         {...props}
       >
         <option value="Select">Select Country</option>

@@ -17,9 +17,5 @@ export const Heading = () => {
 };
 
 export const UnderlineHeading = ({ title }) => {
-  return (
-    <h6 className="under-line text-center mt-5 font-bold after:w-[10%]">
-      {title}
-    </h6>
-  );
+  return <h6 className="under-line ">{title}</h6>;
 };

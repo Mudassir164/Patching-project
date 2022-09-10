@@ -4,7 +4,8 @@
   width: 50%;
   margin: 0 .5em 0 -55%;
   vertical-align: middle;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid gray;
+  
 }
 
 .under-line::after{
@@ -12,10 +13,11 @@
 }
 
 .under-line{
-    width: 70%;
-  margin: .7em auto;
+    width: 100%;
+  margin: 30px auto;
+  font-weight: bold;
   overflow: hidden;
   text-align: center;
-  font-weight:300;
+  
   color: black;
 }

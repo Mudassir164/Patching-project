@@ -1,27 +1,37 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   initialValues,
   Input,
   PasswordInput,
+  SelectInput,
   validationSchema,
 } from "./FormComponent";
 import { colors } from "../../Constant/Theme";
 import { UnderlineHeading } from "./RegistrationComponent";
+import countryList from "react-select-country-list";
 
 const Form = () => {
   const [passwordShown, setPasswordShown] = useState(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
+
+  const options = useMemo(() => countryList().getLabels(), []);
+
   const togglePassword = () => {
-    // When the handler is invoked
-    // inverse the boolean state of passwordShown
     setPasswordShown(!passwordShown);
+  };
+  const toggleConfirmPassword = () => {
+    setConfirmPasswordShown(!confirmPasswordShown);
+  };
+  const onSubmitHandler = (values, actions) => {
+    console.log(values);
   };
   return (
     <div className="w-[100%]  py-2 px-10 rounded-lg flex flex-wrap flex-row justify-between gap-x-4">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        // onSubmit={onSubmitHandler}
+        onSubmit={onSubmitHandler}
       >
         {({
           values,
@@ -32,7 +42,19 @@ const Form = () => {
           handleSubmit,
           isSubmitting,
         }) => {
-          const { email, password } = values;
+          const {
+            fullname,
+            email,
+            companyName,
+            companyEmail,
+            phone,
+            streetAddress,
+            country,
+            postal,
+            userName,
+            password,
+            confirmPassword,
+          } = values;
 
           return (
             <>
@@ -41,8 +63,8 @@ const Form = () => {
                 type="Text"
                 placeholder="Full Name "
                 onChange={handleChange("fullname")}
-                value={email}
-                error={touched.email && errors.email}
+                value={fullname}
+                error={touched.fullname && errors.fullname}
                 onBlur={handleBlur("fullname")}
                 title="Full Name"
                 width="45%"
@@ -61,7 +83,7 @@ const Form = () => {
                 type="Text"
                 placeholder="Company Name"
                 onChange={handleChange("companyName")}
-                value={email}
+                value={companyName}
                 error={touched.email && errors.email}
                 onBlur={handleBlur("companyName")}
                 title="Company Name"
@@ -72,8 +94,8 @@ const Form = () => {
                 type="Email"
                 placeholder="Company Email "
                 onChange={handleChange("companyEmail")}
-                value={email}
-                error={touched.email && errors.email}
+                value={companyEmail}
+                error={touched.companyEmail && errors.companyEmail}
                 onBlur={handleBlur("companyEmail")}
                 title="Company Email"
                 width="45%"
@@ -82,8 +104,8 @@ const Form = () => {
                 type="Text"
                 placeholder="Phone"
                 onChange={handleChange("phone")}
-                value={email}
-                error={touched.email && errors.email}
+                value={phone}
+                error={touched.phone && errors.phone}
                 onBlur={handleBlur("phone")}
                 title="Phone/Mobile"
                 width="45%"
@@ -92,28 +114,27 @@ const Form = () => {
                 type="Text"
                 placeholder="Street Address"
                 onChange={handleChange("streetAddress")}
-                value={email}
+                value={streetAddress}
                 error={touched.email && errors.email}
                 onBlur={handleBlur("streetAddress")}
                 title="Street Address"
                 width="100%"
               />
-              <Input
-                type="Text"
-                placeholder="Country "
+
+              <SelectInput
+                options={options}
                 onChange={handleChange("country")}
-                value={email}
-                error={touched.email && errors.email}
+                value={country}
+                error={touched.country && errors.country}
                 onBlur={handleBlur("country")}
                 title="Country"
-                width="45%"
               />
               <Input
                 type="Text"
                 placeholder="Postal/Zip Code"
                 onChange={handleChange("postal")}
-                value={email}
-                error={touched.email && errors.email}
+                value={postal}
+                error={touched.postal && errors.postal}
                 onBlur={handleBlur("postal")}
                 title="Postal/Zip Code"
                 width="45%"
@@ -124,15 +145,15 @@ const Form = () => {
                 type="Text"
                 placeholder="Username"
                 onChange={handleChange("userName")}
-                value={email}
-                error={touched.email && errors.email}
+                value={userName}
+                error={touched.userName && errors.userName}
                 onBlur={handleBlur("userName")}
                 title="Username"
                 width="100%"
               />
 
               <PasswordInput
-                type={!passwordShown ? "Text" : "Password"}
+                type={passwordShown ? "Text" : "Password"}
                 placeholder="Password"
                 onChange={handleChange("password")}
                 value={password}
@@ -140,23 +161,25 @@ const Form = () => {
                 onBlur={handleBlur("password")}
                 title="Password"
                 onclick={togglePassword}
-                shown={passwordShown}
+                shown={!passwordShown}
                 width="45%"
               />
               <PasswordInput
-                type={!passwordShown ? "Text" : "Password"}
+                type={confirmPasswordShown ? "Text" : "Password"}
                 placeholder="Confirm Password"
-                onChange={handleChange("Confirm Password")}
-                value={password}
-                error={touched.password && errors.password}
+                onChange={handleChange("confirmPassword")}
+                value={confirmPassword}
+                error={touched.confirmPassword && errors.confirmPassword}
                 onBlur={handleBlur("confirmPassword")}
                 title="Confirm Password"
-                onclick={togglePassword}
-                shown={passwordShown}
+                onclick={toggleConfirmPassword}
+                shown={!confirmPasswordShown}
                 width="45%"
               />
               <button
                 className={`px-6 py-2 rounded-lg mt-5 text-white ${colors.bgSecondry}`}
+                onClick={handleSubmit}
+                type="submit"
               >
                 Login
               </button>

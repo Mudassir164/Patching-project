@@ -11,16 +11,29 @@ import { colors } from "../../Constant/Theme";
 const Form = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
-    // When the handler is invoked
-    // inverse the boolean state of passwordShown
     setPasswordShown(!passwordShown);
+  };
+
+  const onSubmitHandler = (values, actions) => {
+    console.log(values);
+
+    actions.resetForm();
+    actions.setSubmitting(false);
+  };
+
+  const isErrorPresent = (error) => {
+    if (Object.keys(error).length === 0) {
+      return false;
+    } else {
+      return true;
+    }
   };
   return (
     <div className="w-[100%]  p-2 rounded-lg">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        // onSubmit={onSubmitHandler}
+        onSubmit={onSubmitHandler}
       >
         {({
           values,
@@ -32,6 +45,7 @@ const Form = () => {
           isSubmitting,
         }) => {
           const { email, password } = values;
+          const isError = isErrorPresent(errors);
 
           return (
             <>
@@ -45,7 +59,7 @@ const Form = () => {
                 title="Email"
               />
               <PasswordInput
-                type={!passwordShown ? "Text" : "Password"}
+                type={passwordShown ? "Text" : "Password"}
                 placeholder="Password *"
                 onChange={handleChange("password")}
                 value={password}
@@ -53,11 +67,15 @@ const Form = () => {
                 onBlur={handleBlur("password")}
                 title="Password"
                 onclick={togglePassword}
-                shown={passwordShown}
+                shown={!passwordShown}
               />
 
               <button
-                className={`px-6 py-2 rounded-lg mt-5 text-white ${colors.bgSecondry}`}
+                className={`px-6 py-2 rounded-lg mt-5 text-white ${
+                  !isError ? colors.bgSecondry : "bg-blue-500"
+                }`}
+                type="submit"
+                onClick={!isSubmitting ? handleSubmit : null}
               >
                 Login
               </button>

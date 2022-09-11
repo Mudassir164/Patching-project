@@ -61,7 +61,10 @@ export const validationSchema = Yup.object({
     .required("Confirm Password is required")
     .oneOf([Yup.ref("password"), null], "Passwords must be match"),
 
-  phone: Yup.string().trim().matches(phoneRegExp, "Phone number is not valid"),
+  phone: Yup.string()
+    .trim()
+    .matches(phoneRegExp, "Phone number is not valid")
+    .required("Phone Number is Required"),
 
   streetAddress: Yup.string().trim().required("Address is Required"),
 

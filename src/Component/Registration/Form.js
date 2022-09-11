@@ -25,6 +25,9 @@ const Form = () => {
   };
   const onSubmitHandler = (values, actions) => {
     console.log(values);
+
+    actions.resetForm();
+    actions.setSubmitting(false);
   };
   return (
     <div className="w-[100%]  py-2 px-10 rounded-lg flex flex-wrap flex-row justify-between gap-x-4">

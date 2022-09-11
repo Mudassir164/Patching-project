@@ -14,13 +14,13 @@ export const validationSchema = Yup.object({
   password: Yup.string().required("No password provided."),
 });
 
-export const Input = (props) => {
+export const Input = ({ title, error, ...props }) => {
   return (
     <div className="   w-[100%]  mt-3 rounded ">
       <div className="w-[100%] h-6 mb-3">
         <p className=" text-black mr-2 text-xs md:text-xl">
           <span className="text-red-500 text-xl">* </span>
-          {props.title}
+          {title}
         </p>
       </div>
       <input
@@ -28,19 +28,19 @@ export const Input = (props) => {
         className="w-[100%] p-2 bg-[#e8eeef] rounded-md focus:outline-none focus:bg-slate-300"
       />
       <div className="w-[100%] h-6 ">
-        <p className=" text-red-500 mr-2 text-xs ">{props.error}</p>
+        <p className=" text-red-500 mr-2 text-xs ">{error}</p>
       </div>
     </div>
   );
 };
 
-export const PasswordInput = (props) => {
+export const PasswordInput = ({ title, show, error, onclick, ...props }) => {
   return (
     <div className="   w-[100%]  mt-3 rounded ">
       <div className="w-[100%] h-6 mb-3">
         <p className=" text-black mr-2 text-xs md:text-xl">
           <span className="text-red-500 text-xl">* </span>
-          {props.title}
+          {title}
         </p>
       </div>
       <div className="w-[100%] flex flex-row relative">
@@ -48,22 +48,22 @@ export const PasswordInput = (props) => {
           {...props}
           className="w-[100%] p-2 bg-[#e8eeef] rounded-md focus:outline-none focus:bg-slate-300"
         />
-        {props.shown ? (
+        {show ? (
           <BiHide
-            onClick={props.onclick}
+            onClick={onclick}
             size={20}
             className="absolute right-2 cursor-pointer  top-2"
           />
         ) : (
           <BiShow
-            onClick={props.onclick}
+            onClick={onclick}
             size={20}
             className="absolute right-2 cursor-pointer  top-2"
           />
         )}
       </div>
       <div className="w-[100%] h-6 ">
-        <p className=" text-red-500 mr-2 text-xs ">{props.error}</p>
+        <p className=" text-red-500 mr-2 text-xs ">{error}</p>
       </div>
     </div>
   );

@@ -74,97 +74,104 @@ export const validationSchema = Yup.object({
     .required("Postal code is required"),
 });
 
-export const Input = (props) => {
+export const Input = ({ title, width, error, ...props }) => {
   return (
-    <div className={`w-[100%] md:w-[${props.width}] mb-2   rounded`}>
+    <div className={`w-[100%] md:w-[${width}] mb-2   rounded`}>
       <div className="w-[100%] h-6 mb-1 ">
         <p className=" text-black mr-2 text-xs md:text-base flex flex-row items-center ">
           <span className="text-red-500 text-xl">* </span>
-          {props.title} :
+          {title} :
         </p>
       </div>
       <input
         {...props}
         className={`w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none ${
-          props.error
+          error
             ? "border-red-500"
             : "focus:border-blue-500 hover:border-blue-500"
         }`}
       />
       <div className="w-[100%]  ">
-        <p className=" text-red-500 mr-2 text-xs ">{props.error}</p>
+        <p className=" text-red-500 mr-2 text-xs ">{error}</p>
       </div>
     </div>
   );
 };
 
-export const PasswordInput = (props) => {
+export const PasswordInput = ({
+  title,
+  shown,
+  width,
+  onclick,
+  error,
+  ...props
+}) => {
   return (
-    <div className={`w-[100%] md:w-[${props.width}] mb-2  rounded`}>
+    <div className={`w-[100%] md:w-[${width}] mb-2  rounded`}>
       <div className="w-[100%] h-6 mb-1">
         <p className=" text-black mr-2 text-xs md:text-base flex flex-row items-center ">
           <span className="text-red-500 text-xl">* </span>
-          {props.title} :
+          {title} :
         </p>
       </div>
       <div className="w-[100%] flex flex-row relative">
         <input
           {...props}
           className={`w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none ${
-            props.error
+            error
               ? "border-red-500"
               : "focus:border-blue-500 hover:border-blue-500"
           }`}
         />
-        {props.shown ? (
+        {shown ? (
           <BiHide
-            onClick={props.onclick}
+            onClick={onclick}
             size={20}
             className="absolute right-2 cursor-pointer  top-2"
           />
         ) : (
           <BiShow
-            onClick={props.onclick}
+            onClick={onclick}
             size={20}
             className="absolute right-2 cursor-pointer  top-2"
           />
         )}
       </div>
       <div className="w-[100%] h-6 ">
-        <p className=" text-red-500 mr-2 text-xs ">{props.error}</p>
+        <p className=" text-red-500 mr-2 text-xs ">{error}</p>
       </div>
     </div>
   );
 };
 
-export const SelectInput = (props) => {
+export const SelectInput = ({ title, error, options, ...props }) => {
   return (
     <div className="  w-[100%] md:w-[45%]  mb-2  rounded">
       <div className="w-[100%] h-6 mb-1 ">
         <p className=" text-black mr-2 text-xs md:text-base flex flex-row items-center ">
           <span className="text-red-500 text-xl">* </span>
-          {props.title} :
+          {title} :
         </p>
       </div>
       <select
         name="cars"
         id="cars"
         className={`w-[100%] py-1 px-3  rounded-md border-2 focus:outline-none ${
-          props.error
+          error
             ? "border-red-500"
             : "focus:border-blue-500 hover:border-blue-500"
         }`}
         {...props}
       >
         <option value="Select">Select Country</option>
-        {props.options.map((op, index) => (
+        {options.map((op, index) => (
           <option value={op} key={`i${index}`}>
             {op}
           </option>
         ))}
       </select>
       <div className="w-[100%]  ">
-        <p className=" text-red-500 mr-2 text-xs ">{props.error}</p>
+        <p className=" text-red-500 mr-2 text-xs ">{error}</p>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import { Input, SelectFile, SelectInput, TextArea } from "./InputComponents";
 
@@ -14,7 +14,7 @@ const Form = ({ HW, SI, selectOptions }) => {
     Service: "",
     discription: "",
   };
-  const FILE_SIZE = 160 * 1024;
+  const FILE_SIZE = 1500 * 2500;
   const SUPPORTED_FORMATS = [
     "image/jpg",
     "image/jpeg",
@@ -47,20 +47,16 @@ const Form = ({ HW, SI, selectOptions }) => {
       .test(
         "fileSize",
         "File too large",
-        (value) => value && value.size <= FILE_SIZE
+        // (value) => value && value.size <= FILE_SIZE
+        (value) => console.log(value)
       )
       .test(
         "fileFormat",
         "Unsupported Format",
         (value) => value && SUPPORTED_FORMATS.includes(value.type)
       ),
-    // .
-    // test("fileSize", "The file is too large", (value) => {
-    //     if (!value.length) return true // attachment is optional
-    //     return value[0].size <= 2000000
-    //   })
   });
-  // console.log(Yup)
+
   const onSubmitHandler = (values, actions) => {
     console.log(values);
   };
@@ -91,7 +87,7 @@ const Form = ({ HW, SI, selectOptions }) => {
             discription,
             choseFile,
           } = values;
-          console.log(errors);
+          // console.log(errors);
 
           return (
             <>
@@ -150,7 +146,12 @@ const Form = ({ HW, SI, selectOptions }) => {
               <SelectFile
                 multiple={false}
                 type="file"
+                name="choseFile"
+                // onChange={(e) =>
+                //   formik.setFieldValue("photo", e.currentTarget.files[0])
+                // }
                 onChange={handleChange("choseFile")}
+                accept="image/*"
                 value={choseFile}
                 error={touched.choseFile && errors.choseFile}
                 onBlur={handleBlur("choseFile")}

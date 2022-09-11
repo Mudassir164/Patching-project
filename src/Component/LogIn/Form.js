@@ -10,6 +10,7 @@ import { colors } from "../../Constant/Theme";
 
 const Form = () => {
   const [passwordShown, setPasswordShown] = useState(false);
+  const [isEmpty, setisEmpty] = useState(false);
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
@@ -23,9 +24,9 @@ const Form = () => {
 
   const isErrorPresent = (error) => {
     if (Object.keys(error).length === 0) {
-      return false;
+      setisEmpty(true);
     } else {
-      return true;
+      setisEmpty(false);
     }
   };
   return (
@@ -45,8 +46,8 @@ const Form = () => {
           isSubmitting,
         }) => {
           const { email, password } = values;
-          const isError = isErrorPresent(errors);
 
+          isErrorPresent(errors);
           return (
             <>
               <Input
@@ -67,15 +68,16 @@ const Form = () => {
                 onBlur={handleBlur("password")}
                 title="Password"
                 onclick={togglePassword}
-                shown={!passwordShown}
+                show={!passwordShown}
               />
 
               <button
                 className={`px-6 py-2 rounded-lg mt-5 text-white ${
-                  !isError ? colors.bgSecondry : "bg-blue-500"
+                  isEmpty ? colors.bgSecondry : "bg-blue-500"
                 }`}
                 type="submit"
                 onClick={!isSubmitting ? handleSubmit : null}
+                disabled={!isEmpty}
               >
                 Login
               </button>

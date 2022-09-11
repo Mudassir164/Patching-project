@@ -2,7 +2,13 @@ import React, { useState } from "react";
 
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
-import { Input, SelectFile, SelectInput, TextArea } from "./InputComponents";
+import {
+  Input,
+  PreviewImage,
+  SelectFile,
+  SelectInput,
+  TextArea,
+} from "./InputComponents";
 
 const Form = ({ HW, SI, selectOptions }) => {
   const userQuote = {
@@ -10,11 +16,11 @@ const Form = ({ HW, SI, selectOptions }) => {
     email: "",
     phone: "",
     country: "",
-    choseFile: undefined,
+    file: null,
     Service: "",
     discription: "",
   };
-  const FILE_SIZE = 1500 * 2500;
+  const FILE_SIZE = 1024 * 1024;
   const SUPPORTED_FORMATS = [
     "image/jpg",
     "image/jpeg",
@@ -42,18 +48,18 @@ const Form = ({ HW, SI, selectOptions }) => {
     phone: Yup.number().required("Phone Number is required"),
     discription: Yup.string(),
 
-    choseFile: Yup.mixed()
+    file: Yup.mixed()
+      .nullable()
       .required("A file is required")
       .test(
-        "fileSize",
-        "File too large",
-        // (value) => value && value.size <= FILE_SIZE
-        (value) => console.log(value)
+        "FILE_SIZE",
+        "Upload File is too large",
+        (value) => !value || (value && value.size <= FILE_SIZE)
       )
       .test(
         "fileFormat",
         "Unsupported Format",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
       ),
   });
 
@@ -77,6 +83,7 @@ const Form = ({ HW, SI, selectOptions }) => {
           handleChange,
           handleSubmit,
           isSubmitting,
+          setFieldValue,
         }) => {
           const {
             fullname,
@@ -85,9 +92,9 @@ const Form = ({ HW, SI, selectOptions }) => {
             country,
             Service,
             discription,
-            choseFile,
+            file,
           } = values;
-          // console.log(errors);
+          console.log(values);
 
           return (
             <>
@@ -144,18 +151,16 @@ const Form = ({ HW, SI, selectOptions }) => {
                 </>
               )}
               <SelectFile
-                multiple={false}
+                multiple={true}
                 type="file"
-                name="choseFile"
-                // onChange={(e) =>
-                //   formik.setFieldValue("photo", e.currentTarget.files[0])
-                // }
-                onChange={handleChange("choseFile")}
+                onChange={(e) => {
+                  setFieldValue("file", e.currentTarget.files[0]);
+                }}
                 accept="image/*"
-                value={choseFile}
-                error={touched.choseFile && errors.choseFile}
-                onBlur={handleBlur("choseFile")}
+                error={touched.file && errors.file}
+                onBlur={handleBlur("file")}
               />
+              {file && <PreviewImage file={file} />}
               {SI && (
                 <>
                   <SelectInput

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const Input = (props) => {
   return (
@@ -60,6 +60,34 @@ export const SelectFile = (props) => {
         className="w-[100%] p-2 bg-[#e8eeef] rounded-md"
         {...props}
       />
+    </div>
+  );
+};
+
+export const PreviewImage = ({ file }) => {
+  const [preview, setPreview] = useState(null);
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    setPreview(reader.result);
+  };
+  return (
+    <div className="w-[100%] h-100">
+      {preview ? (
+        <div className="relative  w-20">
+          <img src={preview} alt="Preview Image" className="w-20" />
+          <button
+            className="absolute top-0 right-1 bg-black text-white rounded-full w-5 h-5 text-center flex items-center justify-center"
+            onClick={() => {
+              console.log(file);
+            }}
+          >
+            X
+          </button>
+        </div>
+      ) : (
+        "..Loading"
+      )}
     </div>
   );
 };

@@ -11,16 +11,19 @@ import {
 } from "./InputComponents";
 
 const Form = ({ HW, SI, selectOptions }) => {
+  const [files, setfiles] = useState(null);
   const userQuote = {
     fullname: "",
     email: "",
     phone: "",
     country: "",
-    file: null,
+    file: [],
     Service: "",
     discription: "",
   };
-  const FILE_SIZE = 1024 * 1024;
+  // const FILE_SIZE = 1024 * 1024;
+  const FILE_SIZE = 500 * 500;
+
   const SUPPORTED_FORMATS = [
     "image/jpg",
     "image/jpeg",
@@ -49,18 +52,21 @@ const Form = ({ HW, SI, selectOptions }) => {
     discription: Yup.string(),
 
     file: Yup.mixed()
-      .nullable()
+
       .required("A file is required")
-      .test(
-        "FILE_SIZE",
-        "Upload File is too large",
-        (value) => !value || (value && value.size <= FILE_SIZE)
-      )
-      .test(
-        "fileFormat",
-        "Unsupported Format",
-        (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
-      ),
+      .test("A file is required", (value) => !(value.legth === 0)),
+    // .test("FILE_SIZE", "Upload File is too large", (value) =>
+    //   value.map((val) => !val || (val && val.size <= FILE_SIZE))
+    // )
+    // .test(
+    //   "fileFormat",
+    //   "Unsupported Format",
+    //   // (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
+    //   (value) =>
+    //     value.map(
+    //       (val) => !val || (val && SUPPORTED_FORMATS.includes(val.type))
+    //     )
+    // ),
   });
 
   const onSubmitHandler = (values, actions) => {
@@ -94,7 +100,9 @@ const Form = ({ HW, SI, selectOptions }) => {
             discription,
             file,
           } = values;
-          console.log(values);
+
+          // console.log(errors);
+          // console.log(values.file);
 
           return (
             <>
@@ -154,13 +162,34 @@ const Form = ({ HW, SI, selectOptions }) => {
                 multiple={true}
                 type="file"
                 onChange={(e) => {
-                  setFieldValue("file", e.currentTarget.files[0]);
+                  const f = e.currentTarget.files;
+                  setFieldValue("file", [...f]);
                 }}
+                files={file}
                 accept="image/*"
                 error={touched.file && errors.file}
                 onBlur={handleBlur("file")}
               />
-              {file && <PreviewImage file={file} />}
+              {file && (
+                <div className="w-[100%] flex flex-row gap-2 flex-wrap">
+                  {file.map((val, index) => (
+                    <PreviewImage
+                      file={val}
+                      onClick={() => {
+                        const a = file;
+                        const b = a.filter((f) => f.name != val.name);
+
+                        setFieldValue("file", b);
+                        // setfiles(...b);
+                        // values.file = { ...va };
+                        // [...values.file].slice(-1);
+                        // values.file = 0;
+                      }}
+                      key={`upload-img-${index}`}
+                    />
+                  ))}
+                </div>
+              )}
               {SI && (
                 <>
                   <SelectInput
@@ -178,7 +207,8 @@ const Form = ({ HW, SI, selectOptions }) => {
               />
               <button
                 className="w-[100%] p-5  mt-7 mr-2 bg-[#2babe2] hover:bg-blue-500 text-white text-base"
-                onSubmit={!isSubmitting ? handleSubmit : null}
+                onClick={handleSubmit}
+                type="submit"
               >
                 Get Quote
               </button>

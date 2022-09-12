@@ -49,38 +49,42 @@ export const TextArea = (props) => {
     </div>
   );
 };
-export const SelectFile = (props) => {
+export const SelectFile = ({ files, ...props }) => {
   return (
     <div className="  w-[100%]  mt-7 mr-2 ">
       <p className="text-right text-red-700 mr-2 ">{props.error}</p>
       <label htmlFor="myfile"></label>
-      <input
-        id="myfile"
-        name="myfile"
-        className="w-[100%] p-2 bg-[#e8eeef] rounded-md"
-        {...props}
-      />
+      <div className="w-[100%] bg-[#e8eeef] flex flex-row items-center gap-5">
+        <input
+          id="myfile"
+          name="myfile"
+          title=" "
+          className="w-[115px] p-2 bg-[#e8eeef] overflow-hidden rounded-md"
+          {...props}
+        />
+        <p>{files.length != 0 ? `${files.length} files` : "No File Chosen"}</p>
+      </div>
     </div>
   );
 };
 
-export const PreviewImage = ({ file }) => {
+export const PreviewImage = ({ file, onClick }) => {
   const [preview, setPreview] = useState(null);
   const reader = new FileReader();
+
   reader.readAsDataURL(file);
   reader.onload = () => {
     setPreview(reader.result);
   };
+  // console.log(reader);
   return (
-    <div className="w-[100%] h-100">
+    <>
       {preview ? (
         <div className="relative  w-20">
           <img src={preview} alt="Preview Image" className="w-20" />
           <button
             className="absolute top-0 right-1 bg-black text-white rounded-full w-5 h-5 text-center flex items-center justify-center"
-            onClick={() => {
-              console.log(file);
-            }}
+            onClick={onClick}
           >
             X
           </button>
@@ -88,6 +92,6 @@ export const PreviewImage = ({ file }) => {
       ) : (
         "..Loading"
       )}
-    </div>
+    </>
   );
 };

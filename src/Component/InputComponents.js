@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ImCancelCircle } from "react-icons/im";
 
 export const Input = (props) => {
   return (
@@ -81,13 +82,12 @@ export const PreviewImage = ({ file, onClick }) => {
     <>
       {preview ? (
         <div className="relative  w-20">
-          <img src={preview} alt="Preview Image" className="w-20" />
-          <button
-            className="absolute top-0 right-1 bg-black text-white rounded-full w-5 h-5 text-center flex items-center justify-center"
+          <img src={preview} alt="Preview Image" />
+
+          <ImCancelCircle
+            className="absolute top-0 cursor-pointer right-1  text-white bg-black rounded-full w-4 h-4 text-center flex items-center justify-center"
             onClick={onClick}
-          >
-            X
-          </button>
+          />
         </div>
       ) : (
         "..Loading"

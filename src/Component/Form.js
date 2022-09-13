@@ -163,7 +163,7 @@ const Form = ({ HW, SI, selectOptions }) => {
                 type="file"
                 onChange={(e) => {
                   const f = e.currentTarget.files;
-                  setFieldValue("file", [...f]);
+                  setFieldValue("file", [...file, ...f]);
                 }}
                 files={file}
                 accept="image/*"
@@ -171,19 +171,14 @@ const Form = ({ HW, SI, selectOptions }) => {
                 onBlur={handleBlur("file")}
               />
               {file && (
-                <div className="w-[100%] flex flex-row gap-2 flex-wrap">
-                  {file.map((val, index) => (
+                <div className="w-[100%] flex flex-row gap-2 flex-wrap items-center ">
+                  {file.map((value, index) => (
                     <PreviewImage
-                      file={val}
+                      file={value}
                       onClick={() => {
                         const a = file;
-                        const b = a.filter((f) => f.name != val.name);
-
+                        const b = a.filter((f) => f.name != value.name);
                         setFieldValue("file", b);
-                        // setfiles(...b);
-                        // values.file = { ...va };
-                        // [...values.file].slice(-1);
-                        // values.file = 0;
                       }}
                       key={`upload-img-${index}`}
                     />

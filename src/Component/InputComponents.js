@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ImCancelCircle } from "react-icons/im";
-
-export const Input = (props) => {
+import "./navbar.css";
+export const Input = ({ width, ...props }) => {
   return (
-    <div className=" md:w-[48%]  w-[100%]  mt-3 rounded ">
+    <div className={`md:w-[${width}]  w-[100%]  mt-3 rounded `}>
       <div className="w-[100%] h-8">
-        <p className="text-right text-red-700 mr-2 md:text-xs lg:text-base">
+        <p className="text-right text-red-700 mr-2 md:text-xs lg:text-base capitalize">
           {props.error}
         </p>
       </div>
@@ -19,14 +19,14 @@ export const Input = (props) => {
 export const SelectInput = (props) => {
   return (
     <div className="  w-[100%]  mt-7 mr-2 ">
-      <p className="text-right text-red-700 mr-2">{props.error}</p>
+      <p className="text-right text-red-700 mr-2 capitalize">{props.error}</p>
       <select
         name="cars"
         id="cars"
         className="w-[100%] p-2 bg-[#e8eeef] rounded-md"
         {...props}
       >
-        <option value="Select">Select Service *</option>
+        <option value="Select">{props.title} *</option>
         {props.options.map((op, index) => (
           <option value={op} key={`i${index}`}>
             {op}
@@ -53,17 +53,17 @@ export const TextArea = (props) => {
 export const SelectFile = ({ files, ...props }) => {
   return (
     <div className="  w-[100%]  mt-7 mr-2 ">
-      <p className="text-right text-red-700 mr-2 ">{props.error}</p>
+      <p className="text-right text-red-700 mr-2 capitalize ">{props.error}</p>
       <label htmlFor="myfile"></label>
       <div className="w-[100%] bg-[#e8eeef] flex flex-row items-center gap-5">
         <input
           id="myfile"
           name="myfile"
           title=" "
-          className="w-[115px] p-2 bg-[#e8eeef] overflow-hidden rounded-md"
+          className=" w-[115px] p-2  bg-[#e8eeef] overflow-hidden rounded-md"
           {...props}
         />
-        <p>{files.length != 0 ? `${files.length} files` : "No File Chosen"}</p>
+        <p>{files.length !== 0 ? `${files.length} files` : "No File Chosen"}</p>
       </div>
     </div>
   );

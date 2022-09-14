@@ -2,6 +2,11 @@ import React from "react";
 import img1 from "../../Assets/pvc-main.jpg";
 import Form from "../Form";
 import SliderContainer from "../SliderContainer";
+import {
+  selectOptions,
+  userQuote,
+  validationSchema,
+} from "./validationAndValues";
 
 const SliderAndForm = () => {
   const paragraph = (
@@ -43,7 +48,15 @@ const SliderAndForm = () => {
         />
       </div>
       <div className="md:w-[50%] lg:w-[40%] w-[100%] pb-5 ">
-        <Form HW={true} SI={false} />
+        <Form
+          HW={true}
+          SI={true}
+          IsQuantity={true}
+          initialValues={userQuote}
+          validationSchema={validationSchema}
+          selectOptions={selectOptions}
+          optionTitle="Backing Type"
+        />
       </div>
     </section>
   );

@@ -2,7 +2,10 @@ import React from "react";
 import Form from "../Form";
 import SliderContainer from "../SliderContainer";
 import img1 from "../../Assets/banner-vector.jpg";
-// import Slider from "./Components/Slider";
+import {
+  userQuote,
+  validationSchema,
+} from "./Component/InitialValuesAndValidationScheema";
 
 const SliderAndForm = () => {
   const paragraph = (
@@ -28,7 +31,12 @@ const SliderAndForm = () => {
         />
       </div>
       <div className="md:w-[50%] lg:w-[40%] w-[100%] pb-5 ">
-        <Form HW={true} SI={false} />
+        <Form
+          HW={true}
+          SI={false}
+          initialValues={userQuote}
+          validationSchema={validationSchema}
+        />
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Formik, useFormik } from "formik";
-import * as Yup from "yup";
+
 import {
   Input,
   PreviewImage,
@@ -10,74 +10,27 @@ import {
   TextArea,
 } from "./InputComponents";
 
-const Form = ({ HW, SI, selectOptions }) => {
-  const [files, setfiles] = useState(null);
-  const userQuote = {
-    fullname: "",
-    email: "",
-    phone: "",
-    country: "",
-    file: [],
-    Service: "",
-    discription: "",
-  };
-  // const FILE_SIZE = 1024 * 1024;
-  const FILE_SIZE = 500 * 500;
-
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-  const validationSchema = Yup.object({
-    fullname: Yup.string()
-      .trim()
-      .min(3, "Invalid Name")
-      .required("Name  is required"),
-    email: Yup.string()
-      .trim()
-      .email("Invalid Email")
-      .required("Email is required"),
-    country: Yup.string()
-      .trim()
-      .min(3, "Invalid Country Name")
-      .required("Country  is required"),
-    Service:
-      selectOptions &&
-      Yup.string()
-        .required("Please select a Service")
-        .oneOf(selectOptions, "Please Select a Service"),
-    phone: Yup.number().required("Phone Number is required"),
-    discription: Yup.string(),
-
-    file: Yup.mixed()
-
-      .required("A file is required")
-      .test("A file is required", (value) => !(value.legth === 0)),
-    // .test("FILE_SIZE", "Upload File is too large", (value) =>
-    //   value.map((val) => !val || (val && val.size <= FILE_SIZE))
-    // )
-    // .test(
-    //   "fileFormat",
-    //   "Unsupported Format",
-    //   // (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
-    //   (value) =>
-    //     value.map(
-    //       (val) => !val || (val && SUPPORTED_FORMATS.includes(val.type))
-    //     )
-    // ),
-  });
-
+const Form = ({
+  HW,
+  SI,
+  selectOptions,
+  validationSchema,
+  initialValues,
+  ...props
+}) => {
   const onSubmitHandler = (values, actions) => {
     console.log(values);
+    alert(JSON.stringify(values));
+
+    actions.resetForm();
+    actions.setSubmitting(false);
   };
 
   return (
     <div className="flex flex-row flex-wrap p-5 justify-between bg-[#f4f7f8] rounded-lg">
       <h1 className="text-xl font-bold w-[100%]">Get A FREE Quote</h1>
       <Formik
-        initialValues={userQuote}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmitHandler}
       >
@@ -101,7 +54,7 @@ const Form = ({ HW, SI, selectOptions }) => {
             file,
           } = values;
 
-          // console.log(errors);
+          console.log(errors);
           // console.log(values.file);
 
           return (
@@ -113,6 +66,7 @@ const Form = ({ HW, SI, selectOptions }) => {
                 value={fullname}
                 error={touched.fullname && errors.fullname}
                 onBlur={handleBlur("fullname")}
+                width="48%"
               />
               <Input
                 type="tel"
@@ -121,6 +75,7 @@ const Form = ({ HW, SI, selectOptions }) => {
                 value={phone}
                 error={touched.phone && errors.phone}
                 onBlur={handleBlur("phone")}
+                width="48%"
               />
               <Input
                 type="email"
@@ -129,6 +84,7 @@ const Form = ({ HW, SI, selectOptions }) => {
                 value={email}
                 error={touched.email && errors.email}
                 onBlur={handleBlur("email")}
+                width="48%"
               />
               <Input
                 type="text"
@@ -137,24 +93,27 @@ const Form = ({ HW, SI, selectOptions }) => {
                 value={country}
                 error={touched.country && errors.country}
                 onBlur={handleBlur("country")}
+                width="48%"
               />
               {HW && (
                 <>
                   <Input
                     type="text"
                     placeholder="Width *"
-                    onChange={handleChange("country")}
-                    value={country}
-                    error={touched.country && errors.country}
-                    onBlur={handleBlur("country")}
+                    onChange={handleChange("width")}
+                    value={values.width}
+                    error={touched.width && errors.width}
+                    onBlur={handleBlur("width")}
+                    width="48%"
                   />
                   <Input
                     type="text"
                     placeholder="Height *"
-                    onChange={handleChange("country")}
-                    value={country}
-                    error={touched.country && errors.country}
-                    onBlur={handleBlur("country")}
+                    onChange={handleChange("height")}
+                    value={values.height}
+                    error={touched.height && errors.height}
+                    onBlur={handleBlur("height")}
+                    width="48%"
                   />
                 </>
               )}
@@ -162,8 +121,8 @@ const Form = ({ HW, SI, selectOptions }) => {
                 multiple={true}
                 type="file"
                 onChange={(e) => {
-                  const f = e.currentTarget.files;
-                  setFieldValue("file", [...file, ...f]);
+                  const getFiles = e.currentTarget.files;
+                  setFieldValue("file", [...file, ...getFiles]);
                 }}
                 files={file}
                 accept="image/*"
@@ -177,8 +136,10 @@ const Form = ({ HW, SI, selectOptions }) => {
                       file={value}
                       onClick={() => {
                         const a = file;
-                        const b = a.filter((f) => f.name != value.name);
-                        setFieldValue("file", b);
+                        const updateFile = a.filter(
+                          (f) => f.name !== value.name
+                        );
+                        setFieldValue("file", updateFile);
                       }}
                       key={`upload-img-${index}`}
                     />
@@ -193,6 +154,32 @@ const Form = ({ HW, SI, selectOptions }) => {
                     value={Service}
                     error={touched.Service && errors.Service}
                     onBlur={handleBlur("Service")}
+                    title={props.optionTitle}
+                  />
+                </>
+              )}
+              {props.ST && (
+                <>
+                  <SelectInput
+                    options={props.selectOptions2}
+                    onChange={handleChange("type")}
+                    value={values.type}
+                    error={touched.type && errors.type}
+                    onBlur={handleBlur("type")}
+                    title={props.optionTitle2}
+                  />
+                </>
+              )}
+              {props.IsQuantity && (
+                <>
+                  <Input
+                    type="text"
+                    placeholder="Quantity *"
+                    onChange={handleChange("quantity")}
+                    value={values.quantity}
+                    error={touched.quantity && errors.quantity}
+                    onBlur={handleBlur("quantity")}
+                    width="100%"
                   />
                 </>
               )}

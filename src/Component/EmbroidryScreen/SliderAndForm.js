@@ -2,6 +2,11 @@ import React from "react";
 import Form from "../Form";
 import SliderContainer from "../SliderContainer";
 import img1 from "../../Assets/banner-patch.jpg";
+import {
+  userQuote,
+  validationSchema,
+  selectOptions,
+} from "./Component/validationAndValue";
 // import Slider from "./Components/Slider";
 
 const SliderAndForm = () => {
@@ -32,7 +37,15 @@ const SliderAndForm = () => {
         />
       </div>
       <div className="md:w-[50%] lg:w-[40%] w-[100%] pb-5 ">
-        <Form HW={true} SI={false} />
+        <Form
+          HW={true}
+          SI={true}
+          validationSchema={validationSchema}
+          initialValues={userQuote}
+          selectOptions={selectOptions}
+          optionTitle="Backing Type"
+          IsQuantity={true}
+        />
       </div>
     </section>
   );

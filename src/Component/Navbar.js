@@ -62,14 +62,14 @@ const Navbar = () => {
                     setShowMore(!showMore);
                   }}
                 />
-                <NavLink
+                {/* <NavLink
                   title="Account"
                   link="/log-in"
                   onClick={() => {
                     setbarButton(!barButton);
                     setShowMore(false);
                   }}
-                />
+                /> */}
                 <NavLink
                   title="Contact"
                   link="/contact-us"

@@ -25,7 +25,6 @@ const Form = () => {
   };
   const onSubmitHandler = (values, actions) => {
     console.log(values);
-
     actions.resetForm();
     actions.setSubmitting(false);
   };

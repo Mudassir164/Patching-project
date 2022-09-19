@@ -67,6 +67,7 @@ const ContactUsForm = ({ ip }) => {
               data-netlify-honeypot="bot-field"
               method="POST"
             >
+              <input type="hidden" name="form-name" value="contact" />
               <Input
                 type="text"
                 placeholder="Name *"

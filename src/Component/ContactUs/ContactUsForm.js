@@ -18,6 +18,7 @@ const ContactUsForm = ({ ip }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": "contact",
+        ["Ip Address"]: ip,
         ...values,
       }),
     })

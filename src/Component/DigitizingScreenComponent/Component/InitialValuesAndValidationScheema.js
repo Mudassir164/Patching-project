@@ -28,16 +28,9 @@ export const validationSchema = Yup.object({
     .trim()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("Phone Number is Required"),
-  height: Yup.string().test(
-    "len",
-    "Must be exactly 5 characters",
-    (val) => val.length === 5
-  ),
-  width: Yup.string().test(
-    "len",
-    "Must be exactly 5 characters",
-    (val) => val.length === 5
-  ),
+  height: Yup.number("Width must be a number").required("Height required"),
+  width: Yup.number("Height must be a number").required("Width required"),
+
   country: Yup.string()
     .trim()
     .min(3, "Invalid Country Name")

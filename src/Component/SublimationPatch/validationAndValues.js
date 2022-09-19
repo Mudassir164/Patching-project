@@ -36,10 +36,11 @@ export const validationSchema = Yup.object({
     .trim()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("Phone Number is Required"),
-  height: Yup.string().trim(),
-  width: Yup.string().trim(),
+  height: Yup.number("Width must be a number").required("Height required"),
+  width: Yup.number("Height must be a number").required("Width required"),
 
-  quantity: Yup.number()
+  quantity: Yup.number("Enter only number")
+    .required()
 
     .typeError("you must specify a number")
     .min(1, "Min value 1")

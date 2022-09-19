@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Formik, useFormik } from "formik";
+import { Formik } from "formik";
 
 import {
   Input,

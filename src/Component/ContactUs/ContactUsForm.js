@@ -5,7 +5,30 @@ import { userQuote, validationSchema } from "./ContactUsValidationScheema";
 import { colors } from "../../Constant/Theme";
 
 const ContactUsForm = ({ ip }) => {
-  const onSubmitHandler = (values, actions) => {
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  };
+  const onSubmitHandler = (values, { setSubmitting }) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contact",
+        ...values,
+      }),
+    })
+      .then(() => {
+        alert("Success!");
+        setSubmitting(false);
+      })
+      .catch((error) => {
+        alert("Error: Please Try Again!");
+        setSubmitting(false);
+      });
     console.log(values);
   };
 

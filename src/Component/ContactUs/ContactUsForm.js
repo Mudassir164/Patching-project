@@ -61,11 +61,11 @@ const ContactUsForm = ({ ip }) => {
           return (
             <form
               className="form"
-              name="contact"
-              onSubmit={handleSubmit}
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              method="POST"
+              // name="contact"
+              // onSubmit={handleSubmit}
+              // data-netlify="true"
+              // data-netlify-honeypot="bot-field"
+              // method="POST"
             >
               <input type="hidden" name="form-name" value="contact" />
               <Input

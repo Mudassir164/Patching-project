@@ -6,7 +6,7 @@ export const userQuote = {
   phone: "",
   country: "",
   picked: "",
-  discription: "",
+  message: "",
 };
 
 export const validationSchema = Yup.object({
@@ -24,7 +24,7 @@ export const validationSchema = Yup.object({
     .required("Country  is required"),
 
   phone: Yup.number().required("Phone Number is required"),
-  discription: Yup.string(),
+  message: Yup.string(),
 });
 
 export const TextArea = (props) => {

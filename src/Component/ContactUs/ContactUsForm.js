@@ -53,9 +53,8 @@ const ContactUsForm = ({ ip }) => {
             phone,
             email,
             country,
-            Service,
-            discription,
-            choseFile,
+
+            message,
           } = values;
 
           return (
@@ -123,10 +122,7 @@ const ContactUsForm = ({ ip }) => {
                 </div>
               </div>
 
-              <TextArea
-                onChange={handleChange("discription")}
-                value={discription}
-              />
+              <TextArea onChange={handleChange("message")} value={message} />
               <button
                 className={`p-2  mt-7 mr-2 rounded-lg ${colors.bgSecondry} hover:bg-blue-500 text-white text-base`}
                 onClick={handleSubmit}

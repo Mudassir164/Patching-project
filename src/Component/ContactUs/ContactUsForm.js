@@ -59,7 +59,13 @@ const ContactUsForm = ({ ip }) => {
           } = values;
 
           return (
-            <>
+            <form
+              className="form"
+              name="contact"
+              onSubmit={handleSubmit}
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+            >
               <Input
                 type="text"
                 placeholder="Name *"
@@ -126,7 +132,7 @@ const ContactUsForm = ({ ip }) => {
               >
                 Send Message
               </button>
-            </>
+            </form>
           );
         }}
       </Formik>

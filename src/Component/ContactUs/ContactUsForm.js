@@ -65,6 +65,7 @@ const ContactUsForm = ({ ip }) => {
               onSubmit={handleSubmit}
               data-netlify="true"
               data-netlify-honeypot="bot-field"
+              method="POST"
             >
               <Input
                 type="text"

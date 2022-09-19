@@ -5,7 +5,7 @@ export const userQuote = {
   email: "",
   phone: "",
   country: "",
-  picked: "",
+  "Existing Customer": "",
   message: "",
 };
 

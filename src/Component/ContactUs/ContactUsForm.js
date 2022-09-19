@@ -107,7 +107,7 @@ const ContactUsForm = ({ ip }) => {
                     type="radio"
                     value="Yes"
                     name="picked"
-                    onChange={handleChange("picked")}
+                    onChange={handleChange("Existing Customer")}
                   />
                   Yes
                 </div>
@@ -116,7 +116,7 @@ const ContactUsForm = ({ ip }) => {
                     type="radio"
                     value="No"
                     name="picked"
-                    onChange={handleChange("picked")}
+                    onChange={handleChange("Existing Customer")}
                   />{" "}
                   No
                 </div>

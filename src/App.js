@@ -16,7 +16,7 @@ import RegistrationScreen from "./Screens/AuthenticationScreen/RegistrationScree
 import ScrollToTop from "./Component/ScrollToTop";
 function App() {
   // HEAD
-  console.log("checking request");
+  console.log("checking request hello");
 
   return (
     <Router>
